@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Cw2": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\Łukasz\\Desktop\\PJATK\\VII\\APBD\\apbd_int_cw2\\Cw2\\Cw2\\dane.csv"
+    }
+  }
+}
