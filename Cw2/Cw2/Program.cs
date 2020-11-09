@@ -1,25 +1,39 @@
-﻿using System;
+﻿using Cw2.Utils;
+using System;
+using System.IO;
 
 namespace Cw2
 {
     class Program
     {
-        public static string pathIn = "dane.csv";
-        public static string pathOut = "result.xml";
-        public static string format = "xml";
         static void Main(string[] args)
         {
+            FormatCVS(args);
+        }
+
+        static void FormatCVS(string[] args)
+        {
             try
-            { 
-                Utils.CheckAllData(args, pathIn);
-                new CSVFormatter(pathIn, pathOut, format);
+            {
+                CreateLogFile();
+                FileUtils.CheckAllData(args);
+                CSVFormatter formater = new CSVFormatter();
+                formater.FormatAndSerialize();
             }
             catch (Exception e)
             {
-                Utils.SaveErrorMessageToFile(e);
+                Logger.SaveErrorMessageToFile(e);
             }
         }
 
-      
+        static void CreateLogFile()
+        {
+            FileInfo file = new FileInfo(FileUtils.logFilePath);
+
+            if (!file.Exists)
+            {
+                file.Create();
+            }
+        }
     }
 }
